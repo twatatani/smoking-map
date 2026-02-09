@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* 全体 */
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+    background-color: #f5f8f5; /* やわらかい薄緑 */
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    text-align: center;
+    padding: 1.2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* メイン */
+main {
+    padding: 1rem;
+}
+
+/* 情報カード */
+.info-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    border-left: 6px solid #4CAF50;
+    margin-bottom: 2rem;
+}
+
+.info-card p {
+    margin: 0.6rem 0;
+    font-size: 1rem;
+}
+
+.info-card strong {
+    color: #2E7D32;
+}
+
+/* 戻るボタン */
+.btn-back {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.btn-back:hover {
+    background: #43A047;
+}

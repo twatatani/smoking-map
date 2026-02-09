@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>喫煙所マップ</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<header>
+		<h1>喫煙所マップ</h1>
+		<p>地図と一覧から喫煙所を探せます</p>
+	</header>
+	<main>
+		<div id="map"></div>
+		<section>
+			<h2>喫煙所一覧</h2>
+			<ul>
+				<li th:each="dto : ${list}" th:data-id="${dto.sp.id}" th:data-lat="${dto.sp.latitude}"
+					th:data-lng="${dto.sp.longitude}">
+					<span th:text="${dto.sp.name}"></span>
+					<span class="distance" th:text="|${#numbers.formatDecimal(dto.distance, 0, 0)}m|"></span>
+					<a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" 
+						th:href="@{/smoking-points/{id}/edit(id=${dto.sp.id})}"> 編集 </a> 
+					<a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" 
+						th:href="@{/smoking-points/{id}/delete(id=${dto.sp.id})}"> 削除 </a>
+				</li>
+			</ul>
+		</section>
+		<a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+			th:href="@{/smoking-points/new}" class="btn-new">＋ 新規登録</a>
+	</main>
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

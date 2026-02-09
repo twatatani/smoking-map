@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>検索結果</title>
+</head>
+<body>
+
+<h2>検索結果</h2>
+
+<p>住所：<span th:text="${displayName}"></span></p>
+<p>緯度：<span th:text="${latitude}"></span></p>
+<p>経度：<span th:text="${longitude}"></span></p>
+
+<a th:href="@{/geocode}">戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>住所検索</title>
+</head>
+<body>
+
+<h2>住所から緯度経度を検索</h2>
+
+<form th:action="@{/geocode}" method="post">
+    <label>住所：</label>
+    <input type="text" name="address" required>
+    <button type="submit">検索</button>
+</form>
+
+<div th:if="${error}">
+    <p th:text="${error}" style="color:red;"></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.smokingspotfinder.mapper.SmokingPointMapper">
+<!--  [select]全件検索  -->
+<select id="findAll">
+SELECT id,name,latitude,longitude,open_time AS "openTime",close_time AS "closeTime",address,description, raw_description
+FROM smoking_point;
+</select>
+<!--  [select]1件検索  -->
+<select id="findById">
+SELECT id,name,latitude,longitude,open_time AS "openTime",close_time AS "closeTime",address,description, raw_description
+FROM smoking_point
+WHERE id = #{id};
+</select>
+<!--  [insert]新規作成  -->
+<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+INSERT INTO smoking_point
+(name,latitude,longitude,open_time ,close_time ,address,description, raw_description)
+VALUES (#{name}, #{latitude}, #{longitude}, #{openTime}, #{closeTime}, #{address}, #{description}, #{rawDescription});
+</insert>
+<!--  [delete]１件削除  -->
+<delete id="deleteById">
+DELETE FROM smoking_point
+WHERE id = #{id};
+</delete>
+<!--  [update]上書き  -->
+<update id="update">
+UPDATE smoking_point
+SET name=#{name},latitude=#{latitude},longitude=#{longitude},open_time=#{openTime},close_time=#{closeTime},address=#{address},description=#{description}, raw_description=#{rawDescription}
+WHERE id = #{id};
+</update>
+<!--  [select]全緯度経度取出  -->
+<select id="findAllLatLng" resultType="com.example.smokingspotfinder.dto.LatLng">
+    SELECT latitude, longitude
+    FROM smoking_point
+</select>
+<!--  [select]全SmokingPointMapDto取出  -->
+<select id="findAllForMap" resultType="com.example.smokingspotfinder.dto.SmokingPointMapDto">
+    SELECT id,name,latitude, longitude
+    FROM smoking_point
+</select>
+<!--  [select]周辺検索  -->
+<select id="findByLatLngApprox">
+    SELECT id,name,latitude,longitude,
+           open_time AS "openTime",
+           close_time AS "closeTime",
+           address,description, raw_description
+    FROM smoking_point
+    WHERE <![CDATA[ABS(latitude-#{lat}) < #{delta}]]>
+      AND <![CDATA[ABS(longitude-#{lng}) <= #{delta}]]>
+    LIMIT 1
+</select>
+</mapper>

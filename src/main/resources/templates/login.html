@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>喫煙所マップ ログイン</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div class="login-container">
+		<h2>喫煙所マップ管理者用ログインページ</h2>
+		<div th:if="${param.error}" class="error">
+			ユーザー名またはパスワードが違います。
+		</div>
+		<div th:if="${param.logout}" class="logout">
+			ログアウトしました。
+		</div>
+		<form th:action="@{/login}" method="post">
+			<div>
+				<label for="username">ユーザー名</label>
+				<input type="text" id="username" name="username" required>
+			</div>
+			<div>
+				<label for="password">パスワード</label>
+				<input type="password" id="password" name="password" required>
+			</div>
+			
+			<button type="submit">ログイン</button>
+		</form>		
+	</div>
+</body>
+</html>
