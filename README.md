@@ -3,7 +3,7 @@
 現在地や指定した場所から、近くの喫煙所を地図上で探せるWebアプリケーションです。
 
 ## 公開URL
-[https://onrender.com](https://onrender.com)
+[https://onrender.com/smoking-points](https://onrender.com/smoking-points)
 
 ## 主な機能
 - 喫煙所の地図表示
